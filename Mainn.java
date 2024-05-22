@@ -7,22 +7,26 @@ public class Mainn {
         File directory = new File("C:\\Users\\Софья Шувалова\\Downloads\\Telegram Desktop\\cw2\\v4");
         File[] files = directory.listFiles();
 
-        assert files != null;
-        for (File file : files) {
-            FileReaderThread thread = new FileReaderThread(file);
-            thread.start();
-        }
-
-        // Ждем завершения всех потоков
-        for (File file : files) {
-            try {
+        if (files != null) {
+            for (File file : files) {
                 FileReaderThread thread = new FileReaderThread(file);
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                thread.start();
             }
         }
 
-        TextCombiner.combineTextFiles(files, "v4.txt");
+        if (files != null) {
+            for (File file : files) {
+                try {
+                    FileReaderThread thread = new FileReaderThread(file);
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (files != null) {
+            TextCombiner.combineTextFiles(files, "v4.txt");
+        }
     }
 }
