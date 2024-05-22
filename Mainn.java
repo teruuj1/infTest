@@ -9,7 +9,7 @@ public class Mainn {
 
         if (files != null) {
             for (File file : files) {
-                FileReaderThread thread = new FileReaderThread(file);
+                Thread thread = new Thread(new FileReaderThread(file));
                 thread.start();
             }
         }
@@ -17,7 +17,7 @@ public class Mainn {
         if (files != null) {
             for (File file : files) {
                 try {
-                    FileReaderThread thread = new FileReaderThread(file);
+                    Thread thread = new Thread(new FileReaderThread(file));
                     thread.join();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

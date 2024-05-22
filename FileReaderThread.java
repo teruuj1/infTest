@@ -1,7 +1,7 @@
 package kontrwork2;
 import java.io.File;
 
-public class FileReaderThread extends Thread {
+public class FileReaderThread implements Runnable {
     private final File file;
 
     public FileReaderThread(File file) {
